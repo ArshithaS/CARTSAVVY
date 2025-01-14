@@ -1,0 +1,9 @@
+# Clear the session after payment
+session.pop('selected_products', None)
+flash("Payment successful! Thank you for your purchase.", "success") return redirect(url_for('products'))
+return render_template('payment.html', selected_products=selected_products, total_cost=total_cost) # Logout route @app.route('/logout') def logout():
+session.clear()
+return redirect(url_for('login'))
+if _name_ == '_main_':
+init_db() seed_admin() app.run(debug=True)
+59
