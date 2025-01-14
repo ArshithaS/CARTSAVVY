@@ -7,4 +7,4 @@ flash("Payment successful!", "success") with sqlite3.connect("database.db") as c
 products = conn.execute("SELECT * FROM products").fetchall()
 return render_template('products.html', products=products, selected_products=selected_products,
 total=total_cost)
-@app.
+@app.route('/buy_product/<int:product_id>', methods=['POST'])
