@@ -1,0 +1,11 @@
+# View Products (User Only)
+@app.route('/products', methods=['GET', 'POST'])
+52
+def products():
+if session.get('role') != 'user': return redirect(url_for('login')) selected_products = [] total_cost = 0
+if request.method == 'POST':
+budget = int(request.form['budget'])
+with sqlite3.connect("database.db") as conn:
+products = conn.execute("SELECT * FROM products ORDER BY price ASC").fetchall() for product in products:
+if total_cost + product[5] <= budget: # product[5] is price selected_products.append(product)
+total_cost += product[5]
