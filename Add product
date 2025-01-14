@@ -1,0 +1,6 @@
+# Add Product (Admin Only)
+@app.route('/add_product', methods=['GET', 'POST']) def add_product():
+if session.get('role') != 'admin':
+return redirect(url_for('login'))
+if request.method == 'POST': name = request.form['name'] quantity = int(request.form['quantity']) brand = request.form['brand']
+price = int(request.form['priceprice']) details = request.form['details'] image = request.files['image']
