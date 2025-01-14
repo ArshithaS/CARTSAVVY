@@ -1,0 +1,6 @@
+# Ensure the upload folder exists
+if not os.path.exists(app.config['UPLOAD_FOLDER']): os.makedirs(app.config['UPLOAD_FOLDER'])
+image_path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename) image.save(image_path)
+with sqlite3.connect("database.db") as conn:
+conn.execute("INSERT INTO products (name, image_path, quantity, brand, price, details) VALUES (?, ?, ?, ?, ?, ?)",
+(name, image_path, quantity, brand, price, details)) conn.commit() flash("Product added successfully!", "success") return render_template('add_product.html')
