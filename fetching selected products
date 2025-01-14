@@ -1,0 +1,5 @@
+# Fetch the selected product from the database with sqlite3.connect("database.db") as conn:
+product = conn.execute("SELECT * FROM products WHERE id = ?",
+(product_id,)).fetchone()
+# Store the selected product in the session to display on the payment page if 'selected_products' not in session:
+session['selected_products'] = [] session['selected_products'].append(product) session.modified = True
