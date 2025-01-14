@@ -1,0 +1,6 @@
+# Redirect to the payment page 
+return redirect(url_for('payment'))
+@app.route('/payment', methods=['GET', 'POST']) def payment():
+if session.get('role') != 'user': return redirect(url_for('login'))
+58
+selected_products = session.get('selected_products', []) total_cost = sum(product[5] for product in selected_products) if request.method == 'POST':
