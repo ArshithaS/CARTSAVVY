@@ -1,0 +1,6 @@
+# Store payment details in the database
+with sqlite3.connect("database.db") as conn:
+products_names = ", ".join([p[1] for p in selected_products])
+conn.execute("INSERT INTO payments (user_id, products, total_amount) VALUES (?, ?, ?)",
+(session['user_id'], products_names, total_cost))
+conn.commit()
