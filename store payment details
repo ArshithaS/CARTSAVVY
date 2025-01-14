@@ -8,3 +8,6 @@ products = conn.execute("SELECT * FROM products").fetchall()
 return render_template('products.html', products=products, selected_products=selected_products,
 total=total_cost)
 @app.route('/buy_product/<int:product_id>', methods=['POST'])
+def buy_product(product_id):
+if session.get('role') != 'user':
+return redirect(url_for('login'))
